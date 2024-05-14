@@ -4,6 +4,11 @@ require_once('database.php');
 $con = new database();
  
 $id=$_POST['id'];
+
+session_start();
+if (empty($_SESSION['user'])){
+   header('location:login.php');
+}
  
 if(empty($id)) {
     header('location:index.php');
@@ -51,7 +56,7 @@ if($password == $confirm){
  
   <style>
     body{
-      background-color: #F5347F;
+      background-color: light blue;
     }
     .custom-container{
         width: 800px;
@@ -63,6 +68,7 @@ if($password == $confirm){
  
 </head>
 <body>
+<?php include('includes/navbar.php'); ?>
  
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
   <h3 class="text-center mt-4"> Registration Form</h3>
@@ -146,7 +152,7 @@ if($password == $confirm){
             <input type="submit" name="update" class="btn btn-outline-dark btn-block mt-4" value="Update">
         </div>
         <div class="col-lg-3 col-md-4">
-            <a class="btn btn-outline-light btn-block mt-4" href="login.php">Go Back</a>
+            <a class="btn bg-dark text-light btn-block mt-4" href="login.php">Go Back</a>
         </div>
     </div>
 </div>
